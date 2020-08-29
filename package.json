@@ -1,0 +1,20 @@
+{
+  "name": "chow-backend",
+  "version": "1.0.0",
+  "description": "Backend for chow project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BuildForSDGCohort2/chow-backend.git"
+  },
+  "keywords": [],
+  "author": "Kingsley Umujeyan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BuildForSDGCohort2/chow-backend/issues"
+  },
+  "homepage": "https://github.com/BuildForSDGCohort2/chow-backend#readme"
+}
