@@ -6,19 +6,19 @@ const dbname = 'chow';
 const MONGO_URI = `mongodb+srv://${username}:${password}@cluster0-x8poy.mongodb.net/${dbname}?retryWrites=true&w=majority`;
 
 const InitDb = async () => {
-  await mongoose.connect(MONGO_URI, 
-    { 
+  await mongoose.connect(MONGO_URI,
+    {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,
      })
-  .then(() => {
+    .then(() => {
       // console.log('Connected to Database!');
-  }).catch((error) => {
+    }).catch((error) => {
       // console.log('Failed to connect to DB!');
       // console.log(error);
       throw error;
-  });
+    });
 };
-  
+
 module.exports = InitDb;
