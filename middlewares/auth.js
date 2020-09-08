@@ -17,6 +17,7 @@ function checkAuth(req, res, next) {
       message: 'Invalid Token',
     });
   }
+  return;
 }
 
 module.exports = checkAuth;
