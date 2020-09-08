@@ -7,23 +7,23 @@ const UserSchema = new Schema(
     username: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
     },
     email: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
     },
     password: {
        type: String,
-       required: true 
+       required: true,
     },
     createdAt: {
         type: Date,
-        default: Date.now()
+        default: Date.now(),
     }
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const User = mongoose.model('user', UserSchema);
