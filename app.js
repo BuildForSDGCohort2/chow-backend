@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/', (req, res) => res.status(200).json({
+app.use('/api/v1/', (req, res) => res.status(200).json({
   status: true,
   message: 'Chow is working!',
 }));
