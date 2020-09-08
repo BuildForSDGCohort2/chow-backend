@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 const { signUp } = require('../controllers/userController');
 
@@ -8,5 +9,4 @@ const { signUp } = require('../controllers/userController');
  * @access - public
  */
  router.post('/signup', signUp);
-
  export default router;
