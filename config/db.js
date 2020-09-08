@@ -23,3 +23,4 @@ const InitDb = async () => {
 };
 
 module.exports = InitDb;
+
