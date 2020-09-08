@@ -8,5 +8,5 @@ const { signUp } = require('../controllers/userController');
  * @route - POST /api/v1/signup
  * @access - public
  */
- router.post('/signup', signUp);
- export default router;
+router.post('/signup', signUp);
+export default router;
