@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-const password = 'XXWBmVylJM9873ps';
-const username = 'chow';
-const dbname = 'chow';
+const password = process.env.MONGO_PASSWORD;
+const username = process.env.MONGO_USERNAME;
+const dbname = process.env.MONGO_DNAME;
 const MONGO_URI = `mongodb+srv://${username}:${password}@cluster0-x8poy.mongodb.net/${dbname}?retryWrites=true&w=majority`;
 
 const InitDb = async () => {

@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const initDb = require('./config/db');
 
+
 initDb();
 const app = express();
 
