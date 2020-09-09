@@ -30,5 +30,10 @@ router.post(
       check('password', 'Password filed is required').notEmpty()
     ],
     signIn);
-
+/**
+ * @description - Get logged in user
+ * @route - GET /api/v1/me
+ * @access - private
+ */
+router.get('/me', checkAuth);
 export default router;
