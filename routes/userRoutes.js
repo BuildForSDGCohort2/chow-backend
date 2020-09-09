@@ -38,5 +38,5 @@ router.post(
  */
 router.get('/', checkAuth, getUserByToken);
 
-export default router;
+module.exports = router;
 
