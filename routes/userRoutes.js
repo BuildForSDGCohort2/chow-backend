@@ -1,12 +1,12 @@
 const express = require('express');
 const { check } = require('express-validator');
 const router = express.Router();
-const {signUp, signIn} = require('../controllers/userController');
+const {signUp, signIn, getUserByToken} = require('../controllers/userController');
 const checkAuth = require('../middlewares/auth');
 
 /**
  * @description - User SignUp
- * @route - POST /api/v1/signup
+ * @route - POST /api/v1/user/signup
  * @access - public
  */
 router.post(
@@ -20,7 +20,7 @@ router.post(
 
 /**
  * @description - User login
- * @route - POST /api/v1/signin
+ * @route - POST /api/v1/user/signin
  * @access - public
  */
 router.post(
@@ -30,10 +30,13 @@ router.post(
       check('password', 'Password filed is required').notEmpty()
     ],
     signIn);
+
 /**
- * @description - Get logged in user
- * @route - GET /api/v1/me
+ * @description - Get user by Token
+ * @route - GET /api/v1/user
  * @access - private
  */
-router.get('/me', checkAuth);
+router.get('/', checkAuth, getUserByToken);
+
 export default router;
+
