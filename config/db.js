@@ -14,10 +14,10 @@ const InitDb = async () => {
       useFindAndModify: false,
     })
     .then(() => {
-      console.log('Connected to Database!');
+      // console.log('Connected to Database!');
     }).catch((error) => {
-      console.log('Failed to connect to DB!');
-      console.log(error);
+      // console.log('Failed to connect to DB!');
+      // console.log(error);
       throw error;
     });
 };

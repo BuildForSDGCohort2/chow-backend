@@ -1,7 +1,7 @@
 const express = require('express');
 const { check } = require('express-validator');
 const router = express.Router();
-const {signUp, signIn, getUserByToken} = require('../controllers/userController');
+const {signUp, signIn, getUserByToken } = require('../controllers/userController');
 const checkAuth = require('../middlewares/auth');
 
 /**
@@ -11,12 +11,12 @@ const checkAuth = require('../middlewares/auth');
  */
 router.post(
     '/signup',
-    [
-      check('username', 'username field is required').notEmpty(),
-      check('email', 'Email field is required').isEmail(),
-      check('password', 'Password field is required').notEmpty()
-    ],
-    signUp);
+  [
+    check('username', 'username field is required').notEmpty(),
+    check('email', 'Email field is required').isEmail(),
+    check('password', 'Password field is required').notEmpty(),
+  ],
+  signUp);
 
 /**
  * @description - User login
@@ -24,10 +24,10 @@ router.post(
  * @access - public
  */
 router.post(
-    '/signin',
+  '/signin',
     [
       check('email', 'Email field is required').isEmail(),
-      check('password', 'Password filed is required').notEmpty()
+      check('password', 'Password filed is required').notEmpty(),
     ],
     signIn);
 
