@@ -2,4 +2,4 @@
 # chow-backend
 Backend for chow project
 # api address
-https://chow-kuic.herokuapp.com/api/v1/
+<https://chow-kuic.herokuapp.com/api/v1/>

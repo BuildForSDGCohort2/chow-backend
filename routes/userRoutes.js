@@ -10,13 +10,14 @@ const checkAuth = require('../middlewares/auth');
  * @access - public
  */
 router.post(
-    '/signup',
+  '/signup',
   [
     check('username', 'username field is required').notEmpty(),
     check('email', 'Email field is required').isEmail(),
     check('password', 'Password field is required').notEmpty(),
   ],
-  signUp);
+  signUp
+  );
 
 /**
  * @description - User login
@@ -25,11 +26,12 @@ router.post(
  */
 router.post(
   '/signin',
-    [
-      check('email', 'Email field is required').isEmail(),
-      check('password', 'Password filed is required').notEmpty(),
-    ],
-    signIn);
+  [
+    check('email', 'Email field is required').isEmail(),
+    check('password', 'Password filed is required').notEmpty(),
+  ],
+  signIn
+  );
 
 /**
  * @description - Get user by Token
@@ -39,4 +41,3 @@ router.post(
 router.get('/me', checkAuth, getUserByToken);
 
 module.exports = router;
-
