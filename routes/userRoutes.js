@@ -1,5 +1,5 @@
 const express = require('express');
-
+const { check } = require('express-validator');
 const router = express.Router();
 const { signUp, signIn } = require('../controllers/userController');
 
@@ -8,19 +8,26 @@ const { signUp, signIn } = require('../controllers/userController');
  * @route - POST /api/v1/signup
  * @access - public
  */
-router.post('/signup', signUp);
+router.post(
+    '/signup',
+    [
+      check('username', 'username field is required').notEmpty(),
+      check('email', 'Email field is required').isEmail(),
+      check('password', 'Password field is required').notEmpty()
+    ],
+    signUp);
 
 /**
  * @description - User login
  * @route - POST /api/v1/signin
  * @access - public
  */
-router.post('/signin', signIn);
+router.post(
+    '/signin',
+    [
+      check('email', 'Email field is required').isEmail(),
+      check('password', 'Password filed is required').notEmpty()
+    ],
+    signIn);
 
-/**
- * @description - Get LoggedIn User
- * @route - GET /api/v1/me
- * @param - /user/me
- */
-router.get('/me', auth);
 export default router;
