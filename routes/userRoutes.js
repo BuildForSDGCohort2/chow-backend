@@ -1,8 +1,8 @@
 const express = require('express');
 
 const router = express.Router();
-const { signUp, signIn } = require('../controllers/userController');
-const auth = require('../middlewares/auth');
+const {signUp, signIn} = require('../controllers/userController');
+const checkAuth = require('../middlewares/auth');
 
 /**
  * @description - User SignUp
@@ -23,5 +23,5 @@ router.post('/signin', signIn);
  * @route - GET /api/v1/me
  * @param - /user/me
  */
-router.get('/me', auth);
-export default router;
+router.get('/me', checkAuth);
+module.exports = router;
