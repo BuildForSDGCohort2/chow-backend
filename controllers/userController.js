@@ -21,13 +21,13 @@ const User = require('../models/userModel');
       password
   } = req.body;
   try {
-      let user = await User.findOne({
-          email
-      });
+    let user = await User.findOne({
+        email
+    });
     if(user) {
-        return res.status(400).json({
-            msg: 'User Already Exists!'
-        });
+      return res.status(400).json({
+         msg: 'User Already Exists!',
+      });
     }
     const newUser = new User({
         username,
@@ -40,7 +40,7 @@ const User = require('../models/userModel');
     const payload = {
       newUser: {
         id: newUser.id
-      }
+      },
     };  
     jwt.sign(
       payload,
@@ -48,18 +48,18 @@ const User = require('../models/userModel');
           expiresIn: 10000
       },
       (err, token) => {
-        if(err) throw err;
+        if (err) throw err;
         return res.status(200).json({
-            status: true,
-            message: 'user signup successful',
-            token
+          status: true,
+          message: 'user signup successful',
+          token
         });
       }
     );
   } catch (err) {
-        // console.log(err.message);
-        res.status(500).send('Error in Saving');
-    };
+    // console.log(err.message);
+    res.status(500).send('Error in Saving');
+  };
  };
 
 /**
@@ -79,7 +79,7 @@ const signIn = async (req, res) => {
     let user = await User.findOne({
         email
     });
-    if(!user)
+    if (!user)
       return res.status(400).json({
           message: 'User does not Exist!'
       });
@@ -88,26 +88,26 @@ const signIn = async (req, res) => {
         return res.status(400).json({
             message: 'Incorrect Password !'
         });
-      const payload = {
-        user: {
-            id: user.id
-        }
-      };
-      jwt.sign(
-          payload,
-          'randomString',
-          {
-              expiresIn: 3000
-          },
-          (err, token) => {
-            if(err) throw err;
-            return res.status(200).json({
-                status: true,
-                message: 'User signin successful',
-                token
-            });
-          }
-      );
+    const payload = {
+      user: {
+        id: user.id,
+      }
+    };
+    jwt.sign(
+      payload,
+      'randomString',
+      {
+          expiresIn: 3000
+      },
+      (err, token) => {
+        if(err) throw err;
+        return res.status(200).json({
+            status: true,
+            message: 'User signin successful',
+            token
+        });
+      }
+    );
   } catch (error) {
       console.error(error);
       res.status(500).json({
