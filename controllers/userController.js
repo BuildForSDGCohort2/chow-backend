@@ -119,35 +119,16 @@ const signIn = async (req, res) => {
 /**
  * @description - get user by Token
  */
-const getUserByToken = (req, res) => {
-  const currentUserId = req.authUser.id;
-  const filter = {
-      _id: currentUserId,
+const getUserByToken = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    res.json(user);
+  } catch (e) {
+    res.send({
+      status: false,
+      message: 'Error in Fetching user',
+    });
   }
-  User.findOne(filter, '-password', (err, user) => {
-      if (err)
-        return res.status(500).json({
-            status: false,
-            error: 'Server error:: Could not retrieve record' 
-        });
-      if (!user)
-        return res.status(400).json({
-            status: false,
-            error: 'No such record found'
-        });
-      // User found
-      const data = {
-          id: user._id,
-          username: user.username,
-          email: user.email,
-          auth: user.auth
-      };
-      return res.status(200).json({
-          status: true,
-          message: 'User records',
-          data
-      });
-  });
 };
  module.exports = {
      signUp,

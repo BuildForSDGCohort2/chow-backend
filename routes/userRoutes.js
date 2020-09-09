@@ -36,7 +36,7 @@ router.post(
  * @route - GET /api/v1/user
  * @access - private
  */
-router.get('/', checkAuth, getUserByToken);
+router.get('/me', checkAuth, getUserByToken);
 
 module.exports = router;
 
