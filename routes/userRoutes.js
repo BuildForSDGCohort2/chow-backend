@@ -15,5 +15,5 @@ router.post('/signup', signUp);
  * @route - POST /api/v1/signin
  * @access - public
  */
-router.post('/signup', signIn);
+router.post('/signin', signIn);
 export default router;
