@@ -16,10 +16,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
  */
 const userRoutes = require('./routes/userRoutes');
 
-app.use('api/v1/user', userRoutes);
-app.use('api/v1/', (req, res) => res.status(200).json({
+app.get('/', (req, res) => res.status(200).json({
   status: true,
   message: 'Chow is working!',
 }));
+
+app.use('/user', userRoutes);
 
 module.exports = app;

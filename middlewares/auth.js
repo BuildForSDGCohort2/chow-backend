@@ -1,22 +1,21 @@
 const jwt = require('jsonwebtoken');
 
 function checkAuth(req, res, next) {
-  const token = req.header('token');
+  const token = req.headers['x-auth-token'];
   if (!token) {
-    return res.status(401).json({
-      message: 'Auth Error',
-    });
+    return res.status(401).json({ status: false, error: 'Unauthorized::No token in header' });
   }
-  try {
-    const decoded = jwt.verify(token, 'randomString');
-    req.user = decoded.user;
+
+  jwt.verify(token, 'randomString', (err, decoded) => {
+    if (err) return res.status(500).json({ status: false, error: 'Server error:: Could not decode token' });
+
+    const authUser = {
+      id: decoded.id,
+      auth: decoded.auth
+    };
+    req.authUser = authUser;
     next();
-  } catch (error) {
-    // console.error(error);
-    res.status(500).send({
-      message: 'Invalid Token',
-    });
-  }
+  });
 }
 
 module.exports = checkAuth;
