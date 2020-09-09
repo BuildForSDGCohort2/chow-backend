@@ -1,7 +1,8 @@
 const express = require('express');
 const { check } = require('express-validator');
 const router = express.Router();
-const { signUp, signIn } = require('../controllers/userController');
+const {signUp, signIn} = require('../controllers/userController');
+const checkAuth = require('../middlewares/auth');
 
 /**
  * @description - User SignUp
