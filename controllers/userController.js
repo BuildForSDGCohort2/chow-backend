@@ -1,4 +1,4 @@
-const { check, validationResult } = require('express-validator');
+const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
@@ -8,20 +8,9 @@ const User = require('../models/userModel');
  */
 
  const signUp = async (req, res) => {
-
-    [
-        check('username', 'Please enter a Valid Username')
-        .not()
-        .isEmpty(),
-        check('email', 'Please enter a valid email').isEmail(),
-        check('password', 'Please enter a valid password').isLength({
-            min: 8,
-        }),
-    ];
-
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
-        return res.status(499).json({
+        return res.status(400).json({
             errors: errors.array()
         });
     }
@@ -41,20 +30,20 @@ const User = require('../models/userModel');
             });
         }
 
-        user = new User({
+        const newUser = new User({
             username,
             email,
             password
         });
 
         const salt = await bcrypt.genSalt(10);
-        user.password = await bcrypt.hash(password, salt);
+        newUser.password = await bcrypt.hash(password, salt);
 
-        await user.save();
+        await newUser.save();
 
         const payload = {
-            user: {
-                id: user.id
+            newUser: {
+                id: newUser.id
             }
         };
 
@@ -65,7 +54,9 @@ const User = require('../models/userModel');
             },
             (err, token) => {
                 if(err) throw err;
-                res.status(200).json({
+                return res.status(200).json({
+                    status: true,
+                    message: 'user signup successful',
                     token
                 });
             }
@@ -81,14 +72,6 @@ const User = require('../models/userModel');
  */
 
 const signIn = async (req, res) => {
-
-    [
-        check('email', 'Please enter a valid email').isEmail(),
-        check('password', 'Please enter a valid password').isLength({
-            min: 8
-        })
-    ];
-
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
         return res.status(400).json({
@@ -123,7 +106,9 @@ const signIn = async (req, res) => {
             },
             (err, token) => {
               if(err) throw err;
-              res.status(200).json({
+              return res.status(200).json({
+                  status: true,
+                  message: 'User signin successful',
                   token
               });
             }
