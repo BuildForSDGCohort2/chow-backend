@@ -15,5 +15,12 @@ router.post('/signup', signUp);
  * @route - POST /api/v1/signin
  * @access - public
  */
-router.post('/signup', signIn);
+router.post('/signin', signIn);
+
+/**
+ * @description - Get LoggedIn User
+ * @route - GET /api/v1/me
+ * @param - /user/me
+ */
+router.get('/me', auth);
 export default router;
