@@ -33,7 +33,7 @@ const User = require('../models/userModel');
         username,
         email,
         password
-    });  
+    });
     const salt = await bcrypt.genSalt(10);
     newUser.password = await bcrypt.hash(password, salt);
     await newUser.save();  
@@ -79,11 +79,12 @@ const signIn = async (req, res) => {
     let user = await User.findOne({
         email
     });
-    if (!user)
+    if (!user) {
       return res.status(400).json({
           message: 'User does not Exist!'
       });
-      const isMatch = await bcrypt.compare(password, user.password);
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
       if(!isMatch)
         return res.status(400).json({
             message: 'Incorrect Password !'
@@ -97,10 +98,10 @@ const signIn = async (req, res) => {
       payload,
       'randomString',
       {
-          expiresIn: 3000
+          expiresIn: 3000,
       },
       (err, token) => {
-        if(err) throw err;
+        if (err) throw err;
         return res.status(200).json({
             status: true,
             message: 'User signin successful',
@@ -109,11 +110,11 @@ const signIn = async (req, res) => {
       }
     );
   } catch (error) {
-      console.error(error);
-      res.status(500).json({
-        message: 'Server Error'
-      });
-  }
+    console.error(error);
+    res.status(500).json({
+      message: 'Server Error'
+    });
+  };
 }
 
 /**
@@ -130,7 +131,7 @@ const getUserByToken = async (req, res) => {
     });
   }
 };
- module.exports = {
+module.exports = {
      signUp,
      signIn,
      getUserByToken,
