@@ -17,7 +17,7 @@ router.post(
     check('email', 'Email field is required').isEmail(),
     check('password', 'Password field is required').notEmpty(),
   ],
-signUp,
+  signUp,
 );
 
 /**
