@@ -18,7 +18,7 @@ router.post(
     check('password', 'Password field is required').notEmpty(),
   ],
 signUp,
-  );
+);
 
 /**
  * @description - User login
@@ -31,8 +31,8 @@ router.post(
     check('email', 'Email field is required').isEmail(),
     check('password', 'Password filed is required').notEmpty(),
   ],
-signIn,
-  );
+  signIn,
+);
 
 /**
  * @description - Get user by Token
